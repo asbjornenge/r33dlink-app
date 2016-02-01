@@ -1,8 +1,38 @@
 @import "node_modules/@taghub/taghub-styling/elements"
 
 body
-    background-color pink
+    margin 0
+    padding 0
 
     button
         $taghub-button-basic()
         $taghub-box-shadow()
+
+    .App
+        display flex
+        position fixed
+        top 0
+        left 0
+        right 0
+        bottom 0
+
+    .CanSay
+        width 100%
+        display flex
+        flex-direction column
+
+        .Header
+            height 60px
+            border 1px solid red
+
+        .Frame
+            flex auto
+            border 1px solid red
+            display flex
+            iframe
+                width 100%
+
+        .Controls
+            height 60px
+            border 1px solid red
+
