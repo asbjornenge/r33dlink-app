@@ -22,12 +22,12 @@ let supportedContentType = (headers) => {
 }
 
 let bad = (res, msg) => {
-    res.writeHead(401, {'Content-Type': 'text/plain'});
+    res.writeHead(401, {'Content-Type': 'text/plain; charset=UTF-8'});
     res.end(msg);
 }
 
 let good = (res, text) => {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.writeHead(200, {'Content-Type': 'text/plain; charset=UTF-8'});
     res.end(text);
 }
 
