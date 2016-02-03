@@ -5,9 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "concurrent -p -k 'npm run start-app' 'npm run start-server'",
-    "start-app": "taghub-build start --hot --stylus --images --proxy demo",
-    "start-server": "babel-node server/index.js",
+    "start": "taghub-build start --hot --stylus --images --proxy demo",
     "build": "taghub-build build --stylus --images",
     "bundle": "taghub-build bundle",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register,styl:mocha-stylus-compiler -R nyan -w --check-leaks"

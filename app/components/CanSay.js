@@ -1,23 +1,34 @@
-import React from 'react'
+import React   from 'react'
+import nanoxhr from 'nanoxhr'
+
+class TextLines extends React.Component {      
+    render() {
+        var formatted = this.props.lines.map(function(line) {
+            return <p>{line}</p>
+        });
+        return <div>{ formatted }</div>
+    }
+}
 
 export default class CanSay extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            text   : null,
+            status : null
+        }
+    }
     render() {
+        console.log(this.props)
         return (
             <div className="CanSay">
                 <div className="Header">
                     Header
                 </div>
-                <div className="Frame" ref="text">
-Abstract. Cryptography rearranges power: it configures who can do
-what, from what. This makes cryptography an inherently political tool,
-and it confers on the field an intrinsically moral dimension. The Snowden
-revelations motivate a reassessment of the political and moral positioning
-of cryptography. They lead one to ask if our inability to effectively
-address mass surveillance constitutes a failure of our field. I believe that
-it does. I call for a community-wide effort to develop more effective means
-to resist mass surveillance. I plead for a reinvention of our disciplinary
-culture to attend not only to puzzles and math, but, also, to the societal
-implications of our work.
+                <div className="Text" ref="text">
+                    <pre style={{wordWrap: 'break-word', whiteSpace: 'pre-wrap'}}>
+                        {this.state.text || ''}
+                    </pre>
                 </div>
                 <div className="Controls">
                     <div onClick={this.play.bind(this)}>Play</div>
@@ -33,9 +44,22 @@ implications of our work.
     pause() {
         speechSynthesis.pause()
     }
+    stop() {
+
+    }
+    getText() {
+        nanoxhr(`http://localhost:1337/?link=${this.props.query.link}`)
+            .call(res => {
+                this.setState({
+                    text : res.response,
+                    status : res.status
+                })
+            })
+    }
     componentDidMount() {
-        this.msg = new SpeechSynthesisUtterance(this.refs.text.innerHTML)
-        speechSynthesis.speak(this.msg)
-        speechSynthesis.pause()
+        if (this.props.query.link) this.getText()
+//        this.msg = new SpeechSynthesisUtterance(this.refs.text.innerHTML)
+//        speechSynthesis.speak(this.msg)
+//        speechSynthesis.pause()
     }
 }
