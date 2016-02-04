@@ -33,6 +33,7 @@ export default class CanSay extends React.Component {
                 <div className="Controls">
                     <div onClick={this.play.bind(this)}>Play</div>
                     <div onClick={this.pause.bind(this)}>Pause</div>
+                    <div onClick={this.stop.bind(this)}>Stop</div>
                 </div>
             </div>
         )
