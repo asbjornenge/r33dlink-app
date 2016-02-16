@@ -1,12 +1,6 @@
-@import "node_modules/@taghub/taghub-styling/elements"
-
 body
     margin 0
     padding 0
-
-    button
-        $taghub-button-basic()
-        $taghub-box-shadow()
 
     .App
         display flex
@@ -15,10 +9,6 @@ body
         left 0
         right 0
         bottom 0
-
-    .CanSay
-        width 100%
-        display flex
         flex-direction column
 
         .Header
@@ -26,21 +16,3 @@ body
             border 1px solid red
             flex-shrink 0
 
-        .Text
-            flex auto
-            border 1px solid red
-            display flex
-            overflow-y scroll
-            -webkit-overflow-scrolling touch
-
-        .Controls
-            height 60px
-            border 1px solid red
-            flex-shrink 0
-            display flex
-            flex-direction row
-            justify-content center
-            div
-                border 1px solid red
-                width 50px
-                margin 5px
