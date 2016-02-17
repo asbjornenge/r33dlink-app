@@ -5,9 +5,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "taghub-build start --hot --stylus --images --proxy demo",
-    "build": "taghub-build build --stylus --images",
-    "bundle": "taghub-build bundle",
+    "start": "raistlin start --hot --stylus --images",
+    "build": "raistlin build --stylus --images",
+    "bundle": "raistlin bundle",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register,styl:mocha-stylus-compiler -R nyan -w --check-leaks"
   },
   "author": "",
@@ -43,7 +43,8 @@
     "stylusify": "^2.1.0",
     "testdom": "^2.0.0",
     "uglifyjs": "^2.4.10",
-    "watchify": "^3.4.0"
+    "watchify": "^3.4.0",
+    "@asbjornenge/raistlin": "^1.1.1"
   },
   "babel": {
     "env": {
