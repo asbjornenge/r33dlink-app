@@ -1,7 +1,7 @@
 {
-  "name": "taghub-template-webapp",
+  "name": "ReadLink",
   "version": "1.0.0",
-  "description": "TagHub Application",
+  "description": "The ReadLink App",
   "private": true,
   "main": "index.js",
   "scripts": {
