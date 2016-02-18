@@ -1,6 +1,6 @@
 import React       from 'react'
 import ReactDOM    from 'react-dom'
-import Style       from '@taghub/component-style'
+import Style       from '@asbjornenge/react-style'
 import queryString from 'query-string'
 import Header      from './components/Header'
 import Read        from './screens/Read'
