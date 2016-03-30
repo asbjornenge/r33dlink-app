@@ -32,7 +32,7 @@ export default class Read extends React.Component {
         )
     }
     getText() {
-        nanoxhr(`http://localhost:1337/?link=${this.props.query.link}`)
+        nanoxhr(`/api?link=${this.props.query.link}`)
             .call(res => {
                 this.setState({
                     text : res.response,
