@@ -20,6 +20,7 @@ export default class Sentence extends React.Component {
             console.log('Errored ' + event)
         }
 
+        this.msg.lang = 'en-US' // TODO: Move to state with option to change
         this.msg.text = this.props.text
         speechSynthesis.speak(this.msg)
     }
