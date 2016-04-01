@@ -5,7 +5,6 @@
 
     .Text
         flex auto
-        border 1px solid red
         display flex
         overflow-y scroll
         -webkit-overflow-scrolling touch
@@ -16,13 +15,21 @@
 
     .Controls
         height 60px
-        border 1px solid red
+        background-color black
         flex-shrink 0
         display flex
         flex-direction row
         justify-content center
         div
-            border 1px solid red
             width 50px
             margin 5px
-
+            color white
+        .controlItem
+          div
+            border 0
+            margin auto
+            margin-top 7.5px
+            width 30px
+          svg
+            path
+              fill white
