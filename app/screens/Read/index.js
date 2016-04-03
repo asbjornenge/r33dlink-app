@@ -1,8 +1,9 @@
-import React      from 'react'
-import nanoxhr    from 'nanoxhr'
-import TextReader from './components/TextReader'
-import Controls   from './components/Controls'
-import readStyle  from './read.styl'
+import React         from 'react'
+import nanoxhr       from 'nanoxhr'
+import LinkCollector from './components/LinkCollector'
+import TextReader    from './components/TextReader'
+import Controls      from './components/Controls'
+import readStyle     from './read.styl'
 
 export default class Read extends React.Component {
     constructor(props) {
@@ -19,6 +20,10 @@ export default class Read extends React.Component {
         return (
             <div className="Read">
                 <style>{readStyle}</style>
+                <LinkCollector 
+                  queryLink={this.props.query.link} 
+                  getText={this.getText.bind(this)}
+                  />
                 <TextReader 
                     text={this.state.text}
                     read={this.state.read}
@@ -31,8 +36,8 @@ export default class Read extends React.Component {
             </div>
         )
     }
-    getText() {
-        nanoxhr(`/api?link=${this.props.query.link}`)
+    getText(link) {
+        nanoxhr(`/api?link=${link}`)
             .call(res => {
                 this.setState({
                     text : res.response,
@@ -46,6 +51,7 @@ export default class Read extends React.Component {
         this.setState({ readIndex : index+1 })
     }
     componentDidMount() {
-        if (this.props.canSpeak && this.props.query.link) this.getText()
+        if (this.props.canSpeak && this.props.query.link) 
+          this.getText(this.props.query.link)
     }
 }

@@ -1,0 +1,9 @@
+.LinkCollector
+  display flex
+  height 30px
+  button
+    width 50px
+  input
+    flex auto
+    font-size 1.08em
+    text-indent 5px
