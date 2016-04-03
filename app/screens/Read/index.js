@@ -47,8 +47,10 @@ export default class Read extends React.Component {
             })
     }
     onSentenceSpoken(index) {
-        console.log('spoken',index)
-        this.setState({ readIndex : index+1 })
+    //    console.log('spoken',index)
+        setTimeout(() => {
+          this.setState({ readIndex : index+1 })
+        },100)
     }
     componentDidMount() {
         if (this.props.canSpeak && this.props.query.link) 
