@@ -4,6 +4,7 @@ import LinkCollector from './components/LinkCollector'
 import TextReader    from './components/TextReader'
 import Controls      from './components/Controls'
 import readStyle     from './read.styl'
+import Loader        from '../../components/Loader'
 
 export default class Read extends React.Component {
     constructor(props) {
@@ -13,13 +14,18 @@ export default class Read extends React.Component {
             textLoaded : false,
             textLoadedStatus : 0,
             read : false,
-            readIndex : 0
+            readIndex : 0,
+            loading : false
         }
     }
     render() {
+        let loader;
+        if (this.state.loading)
+          loader = <Loader />
         return (
             <div className="Read">
                 <style>{readStyle}</style>
+                {loader}
                 <LinkCollector 
                   queryLink={this.props.query.link} 
                   getText={this.getText.bind(this)}
@@ -37,12 +43,14 @@ export default class Read extends React.Component {
         )
     }
     getText(link) {
+        this.setState({ loading : true })
         nanoxhr(`/api?link=${link}`)
             .call(res => {
                 this.setState({
                     text : res.response,
                     textLoaded : true,
-                    textLoadedStatus : res.status
+                    textLoadedStatus : res.status,
+                    loading : false
                 })
             })
     }
