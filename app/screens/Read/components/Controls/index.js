@@ -1,6 +1,7 @@
 import React     from 'react'
 import Svg       from '@asbjornenge/react-svg'
 import Style     from '@asbjornenge/react-style'
+import locale    from 'locale-string'
 import iStyle    from './index.styl'
 import prevIcon  from './graphics/prev.svg'
 import playIcon  from './graphics/play.svg'
@@ -25,7 +26,8 @@ export default class Controls extends React.Component {
           extendedClasses += ' open'
           let voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : []
           let languageOptions = voices.map((v,index) => {
-            return <option key={v.lang+index} value={index}>{v.name}</option>
+            let _locale = locale.parse(v.lang)
+            return <option key={v.lang+index} value={index}>{_locale.language +" - "+ v.name}</option>
           })
           extendedControls = (
             <div className="extendedControls">
