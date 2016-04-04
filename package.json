@@ -7,7 +7,7 @@
   "scripts": {
     "start": "raistlin start --hot --stylus --images",
     "build": "raistlin build --stylus --images",
-    "bundle": "raistlin bundle",
+    "bundle": "raistlin bundle && cp -R build/graphics dist/graphics",
     "deploy": "scp -r dist/* asbjornenge:/home/ubuntu/static/r33d",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register,styl:mocha-stylus-compiler -R nyan -w --check-leaks"
   },
