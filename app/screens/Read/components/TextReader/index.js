@@ -20,6 +20,7 @@ export default class Text extends React.Component {
                             index={sentenceIndex}
                             readIndex={this.props.readIndex}
                             highlight={sentenceIndex == this.props.readIndex}
+                            languageIndex={this.props.languageIndex}
                             onSpoken={this.props.onSentenceSpoken} /> 
             })
             return (

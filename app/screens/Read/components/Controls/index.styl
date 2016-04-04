@@ -1,0 +1,44 @@
+.Controls
+  display flex
+  flex-direction column
+  .extendedControls
+    color pink
+    flex-shrink 0
+    display flex
+    select
+      border 0
+      height 40px
+      flex auto
+      background-color black
+      color white 
+      border-bottom 1px solid white
+      font-size 1.05em
+      text-indent 5px
+  .basicControls
+    height 60px
+    background-color black
+    flex-shrink 0
+    display flex
+    flex-direction row
+    justify-content center
+    div
+        width 50px
+        margin 5px
+        color white
+    .controlItem
+      div
+        border 0
+        margin auto
+        margin-top 7.5px
+        width 30px
+      svg
+        path
+          fill white
+      &.extended
+        position absolute
+        right 10px
+        svg
+          path
+            fill #fa5225
+        &.open
+          transform: rotate(180deg) 

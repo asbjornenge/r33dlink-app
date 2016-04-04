@@ -8,6 +8,16 @@ export default class Sentence extends React.Component {
             <span className={classes}>{this.props.text}</span>
         )
     }
+    setLang(msg) {
+      if (this.props.languageIndex == -1) { msg.lang = 'en-US'; return }
+      let voices = window.speechSynthesis.getVoices()
+      msg.lang = voices[this.props.languageIndex].lang
+    }
+    setVoice(msg) {
+      if (this.props.languageIndex == -1) return 
+      let voices = window.speechSynthesis.getVoices()
+      msg.voice = voices[this.props.languageIndex]
+    }
     startReading() {
         speechSynthesis.cancel() // Clear previous errors...
         this.msg = new SpeechSynthesisUtterance()
@@ -20,7 +30,8 @@ export default class Sentence extends React.Component {
             console.log('Errored ' + event)
         }
 
-        this.msg.lang = 'en-US' // TODO: Move to state with option to change
+        this.setLang(this.msg)
+        this.setVoice(this.msg)
         this.msg.text = this.props.text
         speechSynthesis.speak(this.msg)
     }

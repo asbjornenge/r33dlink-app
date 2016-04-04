@@ -15,7 +15,8 @@ export default class Read extends React.Component {
             textLoadedStatus : 0,
             read : false,
             readIndex : 0,
-            loading : false
+            loading : false,
+            languageIndex: -1 // Will default to english 
         }
     }
     render() {
@@ -34,10 +35,12 @@ export default class Read extends React.Component {
                     text={this.state.text}
                     read={this.state.read}
                     readIndex={this.state.readIndex}
+                    languageIndex={this.state.languageIndex}
                     onSentenceSpoken={this.onSentenceSpoken.bind(this)} />
                 <Controls 
                     read={this.state.read}
                     readIndex={this.state.readIndex}
+                    languageIndex={this.state.languageIndex}
                     readController={this.setState.bind(this)} />
             </div>
         )
