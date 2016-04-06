@@ -27,7 +27,9 @@ export default class Controls extends React.Component {
           let voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : []
           let languageOptions = voices.map((v,index) => {
             let _locale = locale.parse(v.lang)
-            return <option key={v.lang+index} value={index}>{_locale.language +" - "+ v.name}</option>
+            let _lang   = _locale != undefined ? (_locale.language || '') : ''
+            let _name   = v.name || 'Unknown'
+            return <option key={v.lang+index} value={index}>{_lang+" - "+_name}</option>
           })
           extendedControls = (
             <div className="extendedControls">
