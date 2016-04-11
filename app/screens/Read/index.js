@@ -9,10 +9,13 @@ import Loader        from '../../components/Loader'
 let cantSpeakText = `Sorry. It appears your device does not support reading text`
 let preloadedText = `Hi, and welcome to r33d.link!
 
-Paste a link in the field above and hit Fetch to load it's text. Then hit play to start listening. 
-We support both PDFs and websites (html)
+Paste a link in the field above.
+Hit Fetch to load it's text. 
+Hit play to start listening
 
-enjoy!
+We support both PDFs and websites (html).
+
+Enjoy!
 `
 
 export default class Read extends React.Component {
