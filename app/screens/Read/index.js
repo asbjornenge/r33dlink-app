@@ -6,6 +6,15 @@ import Controls      from './components/Controls'
 import readStyle     from './read.styl'
 import Loader        from '../../components/Loader'
 
+let cantSpeakText = `Sorry. It appears your device does not support reading text`
+let preloadedText = `Hi, and welcome to r33d.link!
+
+Paste a link in the field above and hit Fetch to load it's text. Then hit play to start listening. 
+We support both PDFs and websites (html)
+
+enjoy!
+`
+
 export default class Read extends React.Component {
     constructor(props) {
         super(props)
@@ -23,6 +32,11 @@ export default class Read extends React.Component {
         let loader;
         if (this.state.loading)
           loader = <Loader />
+        let text = this.state.text
+        if (!this.props.canSpeak)
+          text = cantSpeakText
+        if (this.state.text == '')
+          text = preloadedText
         return (
             <div className="Read">
                 <style>{readStyle}</style>
@@ -32,7 +46,7 @@ export default class Read extends React.Component {
                   getText={this.getText.bind(this)}
                   />
                 <TextReader 
-                    text={this.state.text}
+                    text={text}
                     read={this.state.read}
                     readIndex={this.state.readIndex}
                     languageIndex={this.state.languageIndex}
