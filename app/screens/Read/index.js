@@ -65,7 +65,7 @@ export default class Read extends React.Component {
     }
     getText(link) {
         this.setState({ loading : true })
-        nanoxhr(`/api?link=${link}`)
+        nanoxhr(`http://r33d.link/api?link=${link}`)
             .call(res => {
                 this.setState({
                     text : res.response,
