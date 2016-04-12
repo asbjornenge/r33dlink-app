@@ -23,4 +23,18 @@ export default class LinkCollector extends React.Component {
     let val = this.refs.linkInput.value
     this.props.getText(val)
   }
+  fetchOnEnter(e) {
+    // Enter 
+    if (e.which == 13) {
+      e.preventDefault()
+      this.onFetch()
+    }
+  }
+  componentDidMount() {
+    this.enterFetcher = this.fetchOnEnter.bind(this)
+    window.addEventListener('keypress', this.enterFetcher)
+  }
+  componentWillUmount() {
+    window.removeEventListener('keypress', this.enterFetcher)
+  }
 }

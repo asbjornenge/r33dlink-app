@@ -56,6 +56,7 @@ export default class Read extends React.Component {
                     onSentenceSpoken={this.onSentenceSpoken.bind(this)} />
                 <Controls 
                     read={this.state.read}
+                    control={this.control.bind(this)}
                     readIndex={this.state.readIndex}
                     languageIndex={this.state.languageIndex}
                     readController={this.setState.bind(this)} />
@@ -80,8 +81,54 @@ export default class Read extends React.Component {
           this.setState({ readIndex : index+1 })
         },100)
     }
+    control(action) {
+      switch(action) {
+        case 'play':
+          this.setState({ read : true })
+          break
+        case 'pause':
+          this.setState({ read : false })
+          break
+        case 'stop':
+          this.setState({ read : false, readIndex : 0 })
+          break
+        case 'prev':
+          this.setState({ readIndex : this.state.readIndex-1 })
+          break
+        case 'next':
+          this.setState({ readIndex : this.state.readIndex+1 })
+          break
+      }
+    }
+    keyboardControls(e) {
+      // Spacebar
+      if (e.which == 32) {
+        e.preventDefault()
+        if (this.state.read) this.control('pause')
+        else this.control('play')
+      }
+      // Right 
+      if (e.which == 39) {
+        e.preventDefault()
+        this.control('next')
+      }
+      // Left 
+      if (e.which == 37) {
+        e.preventDefault()
+        this.control('prev')
+      }
+      // R - for reload 
+      if (e.which == 82) {
+        this.control('stop')
+      }
+    }
     componentDidMount() {
-        if (this.props.canSpeak && this.props.query.link) 
-          this.getText(this.props.query.link)
+      if (this.props.canSpeak && this.props.query.link) 
+        this.getText(this.props.query.link)
+      this.keyboardController = this.keyboardControls.bind(this)
+      window.addEventListener('keydown', this.keyboardController)
+    }
+    componentWillUmount() {
+      window.removeEventListener('keydown', this.keyboardController)
     }
 }

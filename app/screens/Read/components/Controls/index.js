@@ -72,19 +72,19 @@ export default class Controls extends React.Component {
         )
     }
     play() {
-        this.props.readController({ read : true })
+        this.props.control('play')
     }
     pause() {
-        this.props.readController({ read : false })
+        this.props.control('pause')
     }
     stop() {
-        this.props.readController({ read : false, readIndex : 0 })
+        this.props.control('stop')
     }
     prev() {
-        this.props.readController({ readIndex : this.props.readIndex-1 })
+        this.props.control('prev')
     }
     next() {
-        this.props.readController({ readIndex : this.props.readIndex+1 })
+        this.props.control('next')
     }
     extendControls() {
       this.setState({ extended : !this.state.extended })
