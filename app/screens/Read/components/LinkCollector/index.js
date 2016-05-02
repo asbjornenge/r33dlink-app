@@ -7,6 +7,7 @@ export default class LinkCollector extends React.Component {
     super(props)
   }
   render() {
+    let editText = this.props.editingText ? 'Done' : 'Edit'
     return (
       <div className="LinkCollector">
         <Style style={myStyle} />
@@ -16,8 +17,19 @@ export default class LinkCollector extends React.Component {
           defaultValue={this.props.queryLink}
           placeholder="Paste link here..." />
         <button onClick={this.onFetch.bind(this)}>Fetch</button>
+        <button onClick={this.onEdit.bind(this)}>{editText}</button>
       </div>
     )
+  }
+  onEdit() {
+    if (this.props.editingText) {
+      this.props.readController({ 
+        text : document.querySelector("#editingTextarea").value,
+        editingText: !this.props.editingText 
+      })
+    } else {
+      this.props.readController({ editingText: !this.props.editingText })
+    }
   }
   onFetch() {
     let val = this.refs.linkInput.value
@@ -25,6 +37,7 @@ export default class LinkCollector extends React.Component {
   }
   fetchOnEnter(e) {
     // Enter 
+    if (this.props.editingText) return
     if (e.which == 13) {
       e.preventDefault()
       this.onFetch()

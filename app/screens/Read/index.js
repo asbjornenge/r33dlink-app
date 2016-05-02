@@ -28,7 +28,8 @@ export default class Read extends React.Component {
             read : false,
             readIndex : 0,
             loading : false,
-            languageIndex: -1 // Will default to english 
+            languageIndex: -1, // Will default to english
+            editingText : false 
         }
     }
     render() {
@@ -47,17 +48,21 @@ export default class Read extends React.Component {
                 <LinkCollector 
                   queryLink={this.props.query.link} 
                   getText={this.getText.bind(this)}
+                  editingText={this.state.editingText}
+                  readController={this.setState.bind(this)}
                   />
                 <TextReader 
                     text={text}
                     read={this.state.read}
                     readIndex={this.state.readIndex}
+                    editingText={this.state.editingText}
                     languageIndex={this.state.languageIndex}
                     onSentenceSpoken={this.onSentenceSpoken.bind(this)} />
                 <Controls 
                     read={this.state.read}
                     control={this.control.bind(this)}
                     readIndex={this.state.readIndex}
+                    editingText={this.state.editingText}
                     languageIndex={this.state.languageIndex}
                     readController={this.setState.bind(this)} />
             </div>
@@ -101,6 +106,7 @@ export default class Read extends React.Component {
       }
     }
     keyboardControls(e) {
+      if (this.state.editingText) return
       // Spacebar
       if (e.which == 32) {
         e.preventDefault()

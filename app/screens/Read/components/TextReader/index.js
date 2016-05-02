@@ -27,6 +27,11 @@ export default class Text extends React.Component {
                 <p key={`paragrap-${pindex}`}>{sentences}</p>
             )
         })
+        if (this.props.editingText) {
+          return (
+            <textarea id="editingTextarea" className="Text" defaultValue={this.props.text} />
+          )
+        }
         return (
             <div className="Text">
                 <pre ref="text" style={{wordWrap: 'break-word', whiteSpace: 'pre-wrap'}}>
