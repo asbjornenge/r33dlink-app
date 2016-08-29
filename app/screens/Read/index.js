@@ -10,7 +10,7 @@ let cantSpeakText = `Sorry. It appears your device does not support reading text
 let preloadedText = `Hi, and welcome to r33d.link!
 
 Paste a link in the field above.
-Hit Fetch to load it's text. 
+Hit Fetch to load its text. 
 Hit play to start listening
 
 We support both PDFs and websites (html).
